@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { helloWorld } from 'src/app/utils/utils';
 import { Heroe } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
 
@@ -14,17 +15,14 @@ export class ListadoComponent implements OnInit {
   
   constructor( 
     private heroesService: HeroesService
-  ) { }
+  ) {
+    helloWorld();
+   }
 
   ngOnInit(): void {
-    debugger
     this.heroesService.getHeroes().subscribe( response => {
-      
-      console.log(response)
       this.heroes = response;
     })
-
-    console.log(this.heroes)
   }
 
   
