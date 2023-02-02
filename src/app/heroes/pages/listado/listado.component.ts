@@ -12,6 +12,7 @@ import { HeroesService } from '../../services/heroes.service';
 export class ListadoComponent implements OnInit {
   
   heroes : Heroe[] = [];
+  pathImg: string = "../assets/heroes/";
   
   constructor( 
     private heroesService: HeroesService
@@ -19,11 +20,23 @@ export class ListadoComponent implements OnInit {
     helloWorld();
    }
 
-  ngOnInit(): void {
-    this.heroesService.getHeroes().subscribe( response => {
-      this.heroes = response;
-    })
-  }
+  // ngOnInit(): void {
+  //   this.heroesService.getHeroes().subscribe( response => {
+  //     this.heroes = response;
+  //   })
+  // }
 
-  
+  ngOnInit(): void {
+    this.heroesService.getHeroes().subscribe({
+      next:(response: Heroe[])=> {
+        this.heroes = response;
+      },
+      complete: () => {
+
+      },
+      error: () => {
+
+      }
+    });
+  }
 }
